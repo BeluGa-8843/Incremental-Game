@@ -3,6 +3,10 @@
 
 body, button{font-family: "IBM Plex Mono", monospace;}
 
+body{
+    margin: 0;
+}
+
 .MainTable{
     display: flex;
     justify-content: center;
@@ -122,3 +126,71 @@ a{
     display: flex;
     justify-content: center;
 }
+
+.top-header{
+    background-color: black;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.credit-info{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    overflow: hidden;
+    gap: 500px;
+    white-space: nowrap;
+    border: solid 2px white;
+    border-radius:5px ;
+}
+
+.credit-info div{
+    animation: scroll infinite 10s linear;
+    display: flex;
+    gap: 600px;
+}
+
+.credit-info div div{
+   font-size:20px;
+}
+
+@keyframes scroll {
+    from{
+        transform: translateX(-400px);
+    }
+    to{
+        transform: translateX(400px);
+    }
+}
+
+#OneWorkerUpgradeThree,
+#OneWorkerUpgradeFour,
+#OneWorkerUpgradeFive,
+#OneWorkerUpgradeSix,
+#TwoWorkerUpgradeThree,
+#TwoWorkerUpgradeFour,
+#TwoWorkerUpgradeFive,
+#TwoWorkerUpgradeSix,
+#ThreeWorkerUpgradeThree,
+#ThreeWorkerUpgradeFour,
+#ThreeWorkerUpgradeFive,
+#ThreeWorkerUpgradeSix,
+#FourWorkerUpgradeThree,
+#FourWorkerUpgradeFour,
+#FourWorkerUpgradeFive,
+#FourWorkerUpgradeSix,
+#FiveWorkerUpgradeThree,
+#FiveWorkerUpgradeFour,
+#FiveWorkerUpgradeFive,
+#FiveWorkerUpgradeSix,
+#SixWorkerUpgradeThree,
+#SixWorkerUpgradeFour,
+#SixWorkerUpgradeFive,
+#SixWorkerUpgradeSix{
+    background-color: black;
+}
+
