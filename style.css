@@ -58,9 +58,9 @@ a{
     margin-top: 10px;
     justify-content: center;
 }
-#Home{display: none;}
+#Home{display: flex;}
 #Research{display: none;}
-#Worker{display: flex;}
+#Worker{display: none;}
 
 .Header{
     display: flex;
