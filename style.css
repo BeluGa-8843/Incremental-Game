@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body, button{font-family: "IBM Plex Mono", monospace;}
+
+.MainTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin-top: 1vh;
+}
+
+.Title{
+    width: 70vw;
+    font-size: 50px;
+}
+
+.Infos{
+ display: flex;
+ justify-content: space-around;
+}
+
+.UpgradeTitle{
+    border: solid 2px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.UpgradeSection{
+    display: flex;
+    align-items: center;
+    height: 10vh;
+}
+
+.Nav{
+    display: flex;
+    margin: 5px;
+    gap: 10px;
+    justify-content: right;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.Home-container{
+    display: flex;
+    justify-content: space-between;
+    width: 70vw; 
+}
+
+#Home,
+#Research,
+#Worker{
+    margin-top: 10px;
+    justify-content: center;
+}
+#Home{display: none;}
+#Research{display: none;}
+#Worker{display: flex;}
+
+.Header{
+    display: flex;
+    justify-content: center;
+}
+
+.UpgradeSection-worker{
+    display: flex;
+    width: 70vw;
+    justify-content: space-around;
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.UpgradeTitle-worker{
+    border: solid 2px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 15vw;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;  /* IE et Edge */
+    user-select: none;
+}
+
+.UpgradeSection-worker::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari, Opera */
+}
+
+.UpgradeWorker{
+    flex: 0 0 auto;
+    border: solid 2px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.UpgradeWorker-Btn{
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    user-select: none;
+}
+
+.UpgradeWorker-Btn button{
+ width: 15vw;
+ border: solid 2px;
+ border-radius: 5px;
+ margin: 5px;
+ height: 7vh;
+ cursor: pointer;
+ padding: 5px;
+}
+
+.WorkerNumber{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button id="Reset">Reset</button>
+    <div class="Header">
+        <table border="1" class="MainTable">
+            <tr>
+                <th class="Title">Incremental Game</th>
+            </tr class="Infos-container">
+            <tr>
+                <td class="Infos">
+                    <div class="info">
+                        <div id="MoneyDisplay">Money: 1$</div>
+                        <div id="MoneySecDisplay">Money/sec: 0$</div>
+                    </div>
+                    <div class="info">
+                        <div id="ResearchDisplay">Research: 0</div>
+                        <div id="ResearchSecDisplay">Research/sec: 0</div>
+                    </div>
+                    <div class="info">
+                        <div id="WorkerDisplay">Worker: 0</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="Nav-Bar">
+                    <div class="Nav">
+                        <div><button id="HomeRedirect">Home</button></div>
+                        <div><button id="ResearchRedirect">Research</button></div>
+                        <div><button id="WorkerRedirect">Worker</button></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="Home">
+        <div class="Home-container">
+            <div class="UpgradeSection-container">
+                <div>
+                    <div class="UpgradeSection" id="OneUpgrade">
+                        <div class="UpgradeTitle">First Multiplier</div>
+                        <div id="OneWorkerMultiplier">x1</div>
+                    </div>
+                    <div class="UpgradeSection" id="TwoUpgrade">
+                        <div class="UpgradeTitle">Second Multiplier</div>
+                        <div id="TwoWorkerMultiplier">x1</div>
+                    </div>
+                    <div class="UpgradeSection" id="ThreeUpgrade">
+                        <div class="UpgradeTitle">Third Multiplier</div>
+                        <div id="ThreeWorkerMultiplier">x1</div>
+                    </div>
+                    <div class="UpgradeSection" id="FourUpgrade">
+                        <div class="UpgradeTitle">Fourth Multiplier</div>
+                        <div id="FourWorkerMultiplier">x1</div>
+                    </div>
+                    <div class="UpgradeSection" id="FiveUpgrade">
+                        <div class="UpgradeTitle">Fifth Multiplier</div>
+                        <div id="FiveWorkerMultiplier">x1</div>
+                    </div>
+                    <div class="UpgradeSection" id="SixUpgrade">
+                        <div class="UpgradeTitle">Sixth Multiplier</div>
+                        <div id="SixWorkerMultiplier">x1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="UpgradeSection-container">
+                <div>
+                    <div class="UpgradeSection">
+                        <div class="UpgradeNumber" id="OneUpgrade-Number">0:</div>
+                        <button id="OneUpgrade-Btn">1 $</button>
+                    </div>
+                    <div class="UpgradeSection">
+                        <div class="UpgradeNumber" id="TwoUpgrade-Number">0:</div>
+                        <button id="TwoUpgrade-Btn">10 $</button>
+                    </div>
+                    <div class="UpgradeSection">
+                        <div class="UpgradeNumber" id="ThreeUpgrade-Number">0:</div>
+                        <button id="ThreeUpgrade-Btn">1K $</button>
+                    </div>
+                </div>
+                <div class="UpgradeSection">
+                    <div class="UpgradeNumber" id="FourUpgrade-Number">0:</div>
+                    <button id="FourUpgrade-Btn">100K $</button>
+                </div>
+                <div class="UpgradeSection">
+                    <div class="UpgradeNumber" id="FiveUpgrade-Number">0:</div>
+                    <button id="FiveUpgrade-Btn">10M $</button>
+                </div>
+                <div class="UpgradeSection">
+                    <div class="UpgradeNumber" id="SixUpgrade-Number">0:</div>
+                    <button id="SixUpgrade-Btn">1B $</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Research">
+        Research
+    </div>
+    <div id="Worker">
+        <div>
+            <div class="UpgradeSection-worker">
+                <div class="UpgradeWorker">
+                    <div class="UpgradeTitle-worker">First Upgrade Worker</div>
+                    <div id="OneWorkerNumber" class="WorkerNumber">Worker: 0</div>
+                    <div class="UpgradeWorker-Btn">
+                        <button id="OneWorkerUpgradeOne">+1 worker : 100$</button>
+                        <button id="OneWorkerUpgradeTwo">x2 workers/purchase : 500$</button>
+                        <button id="OneWorkerUpgradeThree">x1.5 efficiency : 2K $</button>
+                        <button id="OneWorkerUpgradeFour">increase Research : 10K $</button>
+                        <button id="OneWorkerUpgradeFiveve">x2 Research increase : 100K $</button>
+                        <button id="OneWorkerUpgradeSix">x2 worker/purchase : 500K $</button>
+                    </div>
+                </div>
+                <div class="UpgradeWorker">
+                    <div class="UpgradeTitle-worker">Second Upgrade Worker</div>
+                    <div id="TwoWorkerNumber" class="WorkerNumber">Worker: 0</div>
+                    <div class="UpgradeWorker-Btn">
+                        <button id="TwoWorkerUpgradeOne">+1 worker : 1K $</button>
+                        <button id="TwoWorkerUpgradeTwo">x2 workers/purchase : 5K $</button>
+                        <button id="TwoWorkerUpgradeThree">x1.5 efficiency : 20K $</button>
+                        <button id="TwoWorkerUpgradeFour">increase Research : 100K $</button>
+                        <button id="TwoWorkerUpgradeFive">x2 Research increase : 1M $</button>
+                        <button id="TwoWorkerUpgradeSix">x2 worker/purchase : 5M $</button>
+                    </div>
+                </div>
+                <div class="UpgradeWorker">
+                    <div class="UpgradeTitle-worker">Third Upgrade Worker</div>
+                    <div id="ThreeWorkerNumber" class="WorkerNumber">Worker: 0</div>
+                    <div class="UpgradeWorker-Btn">
+                        <button id="ThreeWorkerUpgradeOne">+1 worker : 10K $</button>
+                        <button id="ThreeWorkerUpgradeTwo">x2 workers/purchase : 50K $</button>
+                        <button id="ThreeWorkerUpgradeThree">x1.5 efficiency : 200K $</button>
+                        <button id="ThreeWorkerUpgradeFour">increase Research : 1M $</button>
+                        <button id="ThreeWorkerUpgradeFive">x2 Research increase : 10M $</button>
+                        <button id="ThreeWorkerUpgradeSix">x2 worker/purchase : 50M $</button>
+                    </div>
+                </div>
+                <div class="UpgradeWorker">
+                    <div class="UpgradeTitle-worker">Fourth Upgrade Worker</div>
+                    <div id="FourWorkerNumber" class="WorkerNumber">Worker: 0</div>
+                    <div class="UpgradeWorker-Btn">
+                        <button id="FourWorkerUpgradeOne">+1 worker : 1M $</button>
+                        <button id="FourWorkerUpgradeTwo">x2 workers/purchase : 5M $</button>
+                        <button id="FourWorkerUpgradeThree">x1.5 efficiency : 20M $</button>
+                        <button id="FourWorkerUpgradeFour">increase Research : 100M $</button>
+                        <button id="FourWorkerUpgradeFive">x2 Research increase : 1B $</button>
+                        <button id="FourWorkerUpgradeSix">x2 worker/purchase : 5B $</button>
+                    </div>
+                </div>
+                <div class="UpgradeWorker">
+                    <div class="UpgradeTitle-worker">Fifth Upgrade Worker</div>
+                    <div id="FiveWorkerNumber" class="WorkerNumber">Worker: 0</div>
+                    <div class="UpgradeWorker-Btn">
+                        <button id="FiveWorkerUpgradeOne">+1 worker : 10M $</button>
+                        <button id="FiveWorkerUpgradeTwo">x2 workers/purchase : 50M $</button>
+                        <button id="FiveWorkerUpgradeThree">x1.5 efficiency : 200M $</button>
+                        <button id="FiveWorkerUpgradeFour">increase Research : 1B $</button>
+                        <button id="FiveWorkerUpgradeFive">x2 Research increase : 10B $</button>
+                        <button id="FiveWorkerUpgradeSix">x2 worker/purchase : 50B $</button>
+                    </div>
+                </div>
+                <div class="UpgradeWorker">
+                    <div class="UpgradeTitle-worker">Sixth Upgrade Worker</div>
+                    <div id="SixWorkerNumber" class="WorkerNumber">Worker: 0</div>
+                    <div class="UpgradeWorker-Btn">
+                        <button id="SixWorkerUpgradeOne">+1 worker : 10B $</button>
+                        <button id="SixWorkerUpgradeTwo">x2 workers/purchase : 50B $</button>
+                        <button id="SixWorkerUpgradeThree">x1.5 efficiency : 200B $</button>
+                        <button id="SixWorkerUpgradeFour">increase Research : 1T $</button>
+                        <button id="SixWorkerUpgradeFive">x2 Research increase : 10T $</button>
+                        <button id="SixWorkerUpgradeSix">x2 worker/purchase : 50T $</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./scrpit.js"></script>
+</body>
+
+</html>
