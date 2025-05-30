@@ -99,15 +99,15 @@ const upgrades = {
 };
 
 function formatNombre(n) {
-    if (n >= 1e33) {
-        return (n / 1e42).toFixed(2) + "Td";
-    } else if (n >= 1e42) {
+    if (n >= 1e42) {
+        return (n / 1e39).toFixed(2) + "Td";
+    } else if (n >= 1e39) {
         return (n / 1e39).toFixed(2) + "Dd";
-    }else if (n >= 1e39) {
-        return (n / 1e36).toFixed(2) + "Ud";
     }else if (n >= 1e36) {
-        return (n / 1e33).toFixed(2) + "Dc";
+        return (n / 1e36).toFixed(2) + "Ud";
     }else if (n >= 1e33) {
+        return (n / 1e33).toFixed(2) + "Dc";
+    }else if (n >= 1e30) {
         return (n / 1e30).toFixed(2) + "No";
     } else if (n >= 1e27) {
         return (n / 1e27).toFixed(2) + "Oc";
