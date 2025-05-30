@@ -87,7 +87,7 @@ const FiveUpgradeNumberDisplay = document.getElementById('FiveUpgrade-Number')
 const SixUpgradeBtn = document.getElementById('SixUpgrade-Btn')
 const SixUpgradeNumberDisplay = document.getElementById('SixUpgrade-Number')
 
-let money = 1e6
+let money = 1
 
 const upgrades = {
     one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber:1, WorkerMultiplier:1 },
