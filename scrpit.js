@@ -87,7 +87,7 @@ const FiveUpgradeNumberDisplay = document.getElementById('FiveUpgrade-Number')
 const SixUpgradeBtn = document.getElementById('SixUpgrade-Btn')
 const SixUpgradeNumberDisplay = document.getElementById('SixUpgrade-Number')
 
-let money = 1
+let money = 1e6
 
 const upgrades = {
     one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber:1, WorkerMultiplier:1 },
@@ -249,7 +249,7 @@ function handleGenericUpgrade(upgradeKey, btnVar) {
     btnVar.addEventListener('click', () => {
         const upgrade = upgrades[upgradeKey];
         if (upgrade.price <= money) {
-            if (upgrade.price >= 10000) {
+            if (upgrade.number >= 20) {
                 upgrade.number *= 2;
             } else {
                 upgrade.number += 1;
@@ -257,6 +257,7 @@ function handleGenericUpgrade(upgradeKey, btnVar) {
             money -= upgrade.price;
             upgrade.price *= 10;
             updateUI();
+
         } else {
             alert("You don't have enough money : " + money + " Price: " + upgrade.price);
         }
