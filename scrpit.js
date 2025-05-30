@@ -99,8 +99,26 @@ const upgrades = {
 };
 
 function formatNombre(n) {
-    if (n >= 1_000_000_000_000_000) {
-        return (n / 1_000_000_000_000_000).toFixed(2) + "Q";
+    if (n >= 1e33) {
+        return (n / 1e33).toFixed(2) + "Dc";
+    }
+    else if (n >= 1e30) {
+        return (n / 1e30).toFixed(2) + "No";
+    }
+    else if (n >= 1e27) {
+        return (n / 1e27).toFixed(2) + "Oc";
+    }
+    else if (n >= 1e24) {
+        return (n / 1e24).toFixed(2) + "Sp";
+    }
+    else if (n >= 1e21) {
+        return (n / 1e21).toFixed(2) + "Sx";
+    }
+    else if (n >= 1e18) {
+        return (n / 1e18).toFixed(2) + "Qi";
+    }
+    else if (n >= 1e15) {
+        return (n / 1e15).toFixed(2) + "Qa";
     }
     else if (n >= 1_000_000_000_000) {
         return (n / 1_000_000_000_000).toFixed(2) + "T";
@@ -134,12 +152,12 @@ MoneyIncreaser = setInterval(() => {
 
 
 function updateUI() {
-    OneUpgradeNumberDisplay.textContent = upgrades.one.number + ":"
-    TwoUpgradeNumberDisplay.textContent = upgrades.two.number + ":"
-    ThreeUpgradeNumberDisplay.textContent = upgrades.three.number + ":"
-    FourUpgradeNumberDisplay.textContent = upgrades.four.number + ":"
-    FiveUpgradeNumberDisplay.textContent = upgrades.five.number + ":"
-    SixUpgradeNumberDisplay.textContent = upgrades.six.number + ":"
+    OneUpgradeNumberDisplay.textContent = formatNombre(upgrades.one.number) + ":"
+    TwoUpgradeNumberDisplay.textContent = formatNombre(upgrades.two.number) + ":"
+    ThreeUpgradeNumberDisplay.textContent = formatNombre(upgrades.three.number) + ":"
+    FourUpgradeNumberDisplay.textContent = formatNombre(upgrades.four.number) + ":"
+    FiveUpgradeNumberDisplay.textContent = formatNombre(upgrades.five.number) + ":"
+    SixUpgradeNumberDisplay.textContent = formatNombre(upgrades.six.number) + ":"
 
     OneWorkerNumberDisplay.textContent = "worker: " + upgrades.one.WorkerNumber
     TwoWorkerNumberDisplay.textContent = "worker: " + upgrades.two.WorkerNumber
@@ -249,8 +267,14 @@ function handleGenericUpgrade(upgradeKey, btnVar) {
     btnVar.addEventListener('click', () => {
         const upgrade = upgrades[upgradeKey];
         if (upgrade.price <= money) {
+            
             if (upgrade.number <= 20){
                 upgrade.number += 1
+            }else if (upgrade.number >= 1e9){
+                upgrade.number *=1.5
+            }
+            else if (upgrade.number >= 1e18){
+                upgrade.number *=1.25
             } else{
                 upgrade.number *=2
             }
