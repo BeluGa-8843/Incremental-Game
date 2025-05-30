@@ -3,7 +3,7 @@ const Reset = document.getElementById('Reset')
 const MoneyDipslay = document.getElementById('MoneyDisplay')
 const MoneySecDisplay = document.getElementById('MoneySecDisplay')
 
-const WorkerDisplay = document.getElementById('WorkerDisplay')  
+const WorkerDisplay = document.getElementById('WorkerDisplay')
 
 const HomeRedirect = document.getElementById('HomeRedirect')
 const ResearchRedirect = document.getElementById('ResearchRedirect')
@@ -87,15 +87,15 @@ const FiveUpgradeNumberDisplay = document.getElementById('FiveUpgrade-Number')
 const SixUpgradeBtn = document.getElementById('SixUpgrade-Btn')
 const SixUpgradeNumberDisplay = document.getElementById('SixUpgrade-Number')
 
-let money = 1e6
+let money = 1
 
 const upgrades = {
-    one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber:1, WorkerMultiplier:1 },
-    two: { price: 10, number: 0, btn: TwoUpgradeBtn, WorkerPrice: 1e3, WorkerNumber:1, WorkerMultiplier:1 },
-    three: { price: 1000, number: 0, btn: ThreeUpgradeBtn, WorkerPrice: 1e4, WorkerNumber:1, WorkerMultiplier:1 },
-    four: { price: 100000, number: 0, btn: FourUpgradeBtn, WorkerPrice: 1e6, WorkerNumber:1, WorkerMultiplier:1 },
-    five: { price: 1e7, number: 0, btn: FiveUpgradeBtn, WorkerPrice: 1e7, WorkerNumber:1, WorkerMultiplier:1 },
-    six: { price: 1e9, number: 0, btn: SixUpgradeBtn, WorkerPrice: 1e10, WorkerNumber:1, WorkerMultiplier:1 },
+    one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber: 1, WorkerMultiplier: 1 },
+    two: { price: 10, number: 0, btn: TwoUpgradeBtn, WorkerPrice: 1e3, WorkerNumber: 1, WorkerMultiplier: 1 },
+    three: { price: 1000, number: 0, btn: ThreeUpgradeBtn, WorkerPrice: 1e4, WorkerNumber: 1, WorkerMultiplier: 1 },
+    four: { price: 100000, number: 0, btn: FourUpgradeBtn, WorkerPrice: 1e6, WorkerNumber: 1, WorkerMultiplier: 1 },
+    five: { price: 1e7, number: 0, btn: FiveUpgradeBtn, WorkerPrice: 1e7, WorkerNumber: 1, WorkerMultiplier: 1 },
+    six: { price: 1e9, number: 0, btn: SixUpgradeBtn, WorkerPrice: 1e10, WorkerNumber: 1, WorkerMultiplier: 1 },
 };
 
 function formatNombre(n) {
@@ -103,16 +103,16 @@ function formatNombre(n) {
         return (n / 1_000_000_000_000_000).toFixed(2) + "Q";
     }
     else if (n >= 1_000_000_000_000) {
-      return (n / 1_000_000_000_000).toFixed(2) + "T";
+        return (n / 1_000_000_000_000).toFixed(2) + "T";
     }
     else if (n >= 1_000_000_000) {
-      return (n / 1_000_000_000).toFixed(2) + "B";
+        return (n / 1_000_000_000).toFixed(2) + "B";
     } else if (n >= 1_000_000) {
-      return (n / 1_000_000).toFixed(2) + "M";
+        return (n / 1_000_000).toFixed(2) + "M";
     } else if (n >= 1_000) {
-      return (n / 1_000).toFixed(1) + "K";
+        return (n / 1_000).toFixed(1) + "K";
     } else {
-      return n.toString();
+        return n.toString();
     }
 }
 
@@ -141,15 +141,15 @@ function updateUI() {
     FiveUpgradeNumberDisplay.textContent = upgrades.five.number + ":"
     SixUpgradeNumberDisplay.textContent = upgrades.six.number + ":"
 
-    OneWorkerNumberDisplay.textContent ="worker: " + upgrades.one.WorkerNumber
+    OneWorkerNumberDisplay.textContent = "worker: " + upgrades.one.WorkerNumber
     TwoWorkerNumberDisplay.textContent = "worker: " + upgrades.two.WorkerNumber
     ThreeWorkerNumberDisplay.textContent = "worker: " + upgrades.three.WorkerNumber
     FourWorkerNumberDisplay.textContent = "worker: " + upgrades.four.WorkerNumber
     FiveWorkerNumberDisplay.textContent = "worker: " + upgrades.five.WorkerNumber
-    SixWorkerNumberDisplay.textContent ="worker: " + upgrades.six.WorkerNumber
+    SixWorkerNumberDisplay.textContent = "worker: " + upgrades.six.WorkerNumber
 
     MoneyDipslay.textContent = "Money: " + formatNombre(money) + " $"
-    MoneySecDisplay.textContent = "Money/sec: " + formatNombre(upgrades.one.number*upgrades.one.WorkerNumber)
+    MoneySecDisplay.textContent = "Money/sec: " + formatNombre(upgrades.one.number * upgrades.one.WorkerNumber)
 
     OneUpgradeBtn.textContent = formatNombre(upgrades.one.price) + " $"
     TwoUpgradeBtn.textContent = formatNombre(upgrades.two.price) + " $"
@@ -165,14 +165,14 @@ function updateUI() {
     FiveWorkerUpgradeOne.textContent = "+1 worker : " + formatNombre((upgrades.five.WorkerPrice).toFixed(0))
     SixWorkerUpgradeOne.textContent = "+1 worker : " + formatNombre((upgrades.six.WorkerPrice).toFixed(0))
 
-    OneWorkerMultiplierDisplay.textContent = "x"+ upgrades.one.WorkerNumber
-    TwoWorkerMultiplierDisplay.textContent = "x"+ upgrades.two.WorkerNumber
-    ThreeWorkerMultiplierDisplay.textContent = "x"+ upgrades.three.WorkerNumber
-    FourWorkerMultiplierDisplay.textContent = "x"+upgrades.four.WorkerNumber
-    FiveWorkerMultiplierDisplay.textContent = "x"+upgrades.five.WorkerNumber
-    SixWorkerMultiplierDisplay.textContent = "x"+upgrades.six.WorkerNumber
+    OneWorkerMultiplierDisplay.textContent = "x" + upgrades.one.WorkerNumber
+    TwoWorkerMultiplierDisplay.textContent = "x" + upgrades.two.WorkerNumber
+    ThreeWorkerMultiplierDisplay.textContent = "x" + upgrades.three.WorkerNumber
+    FourWorkerMultiplierDisplay.textContent = "x" + upgrades.four.WorkerNumber
+    FiveWorkerMultiplierDisplay.textContent = "x" + upgrades.five.WorkerNumber
+    SixWorkerMultiplierDisplay.textContent = "x" + upgrades.six.WorkerNumber
 
-    WorkerDisplay.textContent = "worker: " + formatNombre(-6+(upgrades.one.WorkerNumber + upgrades.two.WorkerNumber + upgrades.three.WorkerNumber + upgrades.four.WorkerNumber + upgrades.five.WorkerNumber + upgrades.six.WorkerNumber))
+    WorkerDisplay.textContent = "worker: " + formatNombre(-6 + (upgrades.one.WorkerNumber + upgrades.two.WorkerNumber + upgrades.three.WorkerNumber + upgrades.four.WorkerNumber + upgrades.five.WorkerNumber + upgrades.six.WorkerNumber))
 }
 
 function saveGame() {
@@ -212,14 +212,14 @@ function loadGame() {
     if (save) {
         const data = JSON.parse(save)
         money = data.money ?? 1
-        
+
         upgrades.one.price = data.onePrice ?? upgrades.one.price
         upgrades.two.price = data.twoPrice ?? upgrades.two.price
         upgrades.three.price = data.threePrice ?? upgrades.three.price
         upgrades.four.price = data.fourPrice ?? upgrades.four.price
         upgrades.five.price = data.fivePrice ?? upgrades.five.price
         upgrades.six.price = data.sixPrice ?? upgrades.six.price
-        
+
         upgrades.one.number = data.oneNumber ?? upgrades.one.number
         upgrades.two.number = data.twoNumber ?? upgrades.two.number
         upgrades.three.number = data.threeNumber ?? upgrades.three.number
@@ -249,10 +249,10 @@ function handleGenericUpgrade(upgradeKey, btnVar) {
     btnVar.addEventListener('click', () => {
         const upgrade = upgrades[upgradeKey];
         if (upgrade.price <= money) {
-            if (upgrade.number >= 20) {
-                upgrade.number *= 2;
-            } else {
-                upgrade.number += 1;
+            if (upgrade.number <= 20){
+                upgrade.number += 1
+            } else{
+                upgrade.number *=2
             }
             money -= upgrade.price;
             upgrade.price *= 10;
@@ -272,21 +272,21 @@ handleGenericUpgrade('four', FourUpgradeBtn);
 handleGenericUpgrade('five', FiveUpgradeBtn);
 handleGenericUpgrade('six', SixUpgradeBtn);
 
-HomeRedirect.addEventListener('click',()=>{
+HomeRedirect.addEventListener('click', () => {
     Research.style.display = "none"
     Work.style.display = "none"
     Home.style.display = "flex"
-  })
-ResearchRedirect.addEventListener('click',()=>{
+})
+ResearchRedirect.addEventListener('click', () => {
     Research.style.display = "flex"
     Work.style.display = "none"
     Home.style.display = "none"
-  })  
-WorkerRedirect.addEventListener('click',()=>{
+})
+WorkerRedirect.addEventListener('click', () => {
     Research.style.display = "none"
     Work.style.display = "flex"
     Home.style.display = "none"
-  })
+})
 
 // Worker ///////////////////////////////////////////////////////////////
 
@@ -313,12 +313,15 @@ function handleWorkerUpgrade(upgradeKey) {
 
 // Fonction générique pour acheter un multiplicateur une seule fois
 function handleMultiplierUpgrade(cost, upgradeKey, boughtFlagVarName) {
-    return () => {
+    return (event) => {
         if (money >= cost && !window[boughtFlagVarName]) {
             money -= cost;
             upgrades[upgradeKey].WorkerMultiplier += 1;
             window[boughtFlagVarName] = true;
             updateUI();
+            event.target.style.backgroundColor = 'Darkgray';
+            event.target.style.transition = 'linear 0.2s linear';
+            event.target.style.transform = 'scale(0.95)';
         }
     };
 }
@@ -343,3 +346,10 @@ SixWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('six'));
 SixWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e10, 'six', 'SixWorkerMultiplierBought'));
 
 loadGame();
+
+document.addEventListener("keydown", function(event) {
+    if(event.key = "P") {
+        money += 1e9
+        updateUI()
+    }
+});
