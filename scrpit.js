@@ -100,35 +100,33 @@ const upgrades = {
 
 function formatNombre(n) {
     if (n >= 1e33) {
+        return (n / 1e42).toFixed(2) + "Td";
+    } else if (n >= 1e42) {
+        return (n / 1e39).toFixed(2) + "Dd";
+    }else if (n >= 1e39) {
+        return (n / 1e36).toFixed(2) + "Ud";
+    }else if (n >= 1e36) {
         return (n / 1e33).toFixed(2) + "Dc";
-    }
-    else if (n >= 1e30) {
+    }else if (n >= 1e33) {
         return (n / 1e30).toFixed(2) + "No";
-    }
-    else if (n >= 1e27) {
+    } else if (n >= 1e27) {
         return (n / 1e27).toFixed(2) + "Oc";
-    }
-    else if (n >= 1e24) {
+    } else if (n >= 1e24) {
         return (n / 1e24).toFixed(2) + "Sp";
-    }
-    else if (n >= 1e21) {
+    } else if (n >= 1e21) {
         return (n / 1e21).toFixed(2) + "Sx";
-    }
-    else if (n >= 1e18) {
+    } else if (n >= 1e18) {
         return (n / 1e18).toFixed(2) + "Qi";
-    }
-    else if (n >= 1e15) {
+    } else if (n >= 1e15) {
         return (n / 1e15).toFixed(2) + "Qa";
-    }
-    else if (n >= 1_000_000_000_000) {
-        return (n / 1_000_000_000_000).toFixed(2) + "T";
-    }
-    else if (n >= 1_000_000_000) {
-        return (n / 1_000_000_000).toFixed(2) + "B";
-    } else if (n >= 1_000_000) {
-        return (n / 1_000_000).toFixed(2) + "M";
-    } else if (n >= 1_000) {
-        return (n / 1_000).toFixed(1) + "K";
+    } else if (n >= 1e12) {
+        return (n / 1e12).toFixed(2) + "T";
+    } else if (n >= 1e9) {
+        return (n / 1e9).toFixed(2) + "B";
+    } else if (n >= 1e6) {
+        return (n / 1e6).toFixed(2) + "M";
+    } else if (n >= 1e3) {
+        return (n / 1e3).toFixed(1) + "K";
     } else {
         return n.toString();
     }
