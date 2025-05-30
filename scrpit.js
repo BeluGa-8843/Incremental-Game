@@ -347,9 +347,4 @@ SixWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e10, 'six
 
 loadGame();
 
-document.addEventListener("keydown", function(event) {
-    if(event.key = "P") {
-        money += 1e9
-        updateUI()
-    }
-});
+
