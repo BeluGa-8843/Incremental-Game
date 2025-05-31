@@ -99,9 +99,23 @@ const upgrades = {
 };
 
 function formatNombre(n) {
-    if (n >= 1e42) {
-        return (n / 1e39).toFixed(2) + "Td";
-    } else if (n >= 1e39) {
+    if (n >= 1e63) {
+        return (n / 1e63).toFixed(2) + "Vg";
+    } else if (n >= 1e60) {
+        return (n / 1e60).toFixed(2) + "Nvd";
+    }else if (n >= 1e57) {
+        return (n / 1e57).toFixed(2) + "Ocd";
+    }else if (n >= 1e54) {
+        return (n / 1e54).toFixed(2) + "Spd";
+    }else if (n >= 1e51) {
+        return (n / 1e51).toFixed(2) + "Sxd";
+    }else if (n >= 1e48) {
+        return (n / 1e48).toFixed(2) + "Qid";
+    }else if (n >= 1e45) {
+        return (n / 1e45).toFixed(2) + "Qad";
+    }else if (n >= 1e42) {
+        return (n / 1e42).toFixed(2) + "Td";
+    }else if (n >= 1e39) {
         return (n / 1e39).toFixed(2) + "Dd";
     }else if (n >= 1e36) {
         return (n / 1e36).toFixed(2) + "Ud";
@@ -218,6 +232,12 @@ function saveGame() {
         fourWorkerNumber: upgrades.four.WorkerNumber,
         fiveWorkerNumber: upgrades.five.WorkerNumber,
         sixWorkerNumber: upgrades.six.WorkerNumber,
+        oneWorkerMultiplier: upgrades.one.WorkerMultiplier,
+        twoWorkerMultiplier: upgrades.two.WorkerMultiplier,
+        threeWorkerMultiplier: upgrades.three.WorkerMultiplier,
+        fourWorkerMultiplier: upgrades.four.WorkerMultiplier,
+        fiveWorkerMultiplier: upgrades.five.WorkerMultiplier,
+        sixWorkerMultiplier: upgrades.six.WorkerMultiplier
     }
     localStorage.setItem("myGameSave", JSON.stringify(saveData))
 }
@@ -256,6 +276,14 @@ function loadGame() {
         upgrades.four.WorkerNumber = data.fourWorkerNumber ?? upgrades.four.WorkerNumber
         upgrades.five.WorkerNumber = data.fiveWorkerNumber ?? upgrades.five.WorkerNumber
         upgrades.six.WorkerNumber = data.sixWorkerNumber ?? upgrades.six.WorkerNumber
+
+        
+        upgrades.one.WorkerMultiplier = data.oneWorkerMultiplier ?? upgrades.one.WorkerMultiplier
+        upgrades.two.WorkerMultiplier = data.twoWorkerMultiplier ?? upgrades.two.WorkerMultiplier
+        upgrades.three.WorkerMultiplier = data.threeWorkerMultiplier ?? upgrades.three.WorkerMultiplier
+        upgrades.four.WorkerMultiplier = data.fourWorkerMultiplier ?? upgrades.four.WorkerMultiplier
+        upgrades.five.WorkerMultiplier = data.fiveWorkerMultiplier ?? upgrades.five.WorkerMultiplier
+        upgrades.six.WorkerMultiplier = data.sixWorkerMultiplier ?? upgrades.six.WorkerMultiplier
     }
     updateUI()
 }
@@ -265,21 +293,18 @@ function handleGenericUpgrade(upgradeKey, btnVar) {
     btnVar.addEventListener('click', () => {
         const upgrade = upgrades[upgradeKey];
         if (upgrade.price <= money) {
-            
-            if (upgrade.number <= 20){
-                upgrade.number += 1
-            }else if (upgrade.number >= 1e9){
-                upgrade.number *=1.5
-            }
-            else if (upgrade.number >= 1e18){
-                upgrade.number *=1.25
-            } else{
-                upgrade.number *=2
-            }
+            if (upgrade.number <= 20) {
+                upgrade.number += 1;
+            } else if (upgrade.number >= 1e18) {
+                upgrade.number *= 1.25;
+            } else if (upgrade.number >= 1e9) {
+                upgrade.number *= 1.5;
+            } else {
+                upgrade.number *= 2;
+            }            
             money -= upgrade.price;
             upgrade.price *= 10;
             updateUI();
-
         } 
     });
 }
@@ -311,12 +336,12 @@ WorkerRedirect.addEventListener('click', () => {
 // Worker ///////////////////////////////////////////////////////////////
 
 // Flags globaux pour les multiplicateurs achetés
-let OneWorkerMultiplierBought = false;
-let TwoWorkerMultiplierBought = false;
-let ThreeWorkerMultiplierBought = false;
-let FourWorkerMultiplierBought = false;
-let FiveWorkerMultiplierBought = false;
-let SixWorkerMultiplierBought = false;
+let OneWorkerMultiplierBought = 0;
+let TwoWorkerMultiplierBought = 0;
+let ThreeWorkerMultiplierBought = 0;
+let FourWorkerMultiplierBought = 0;
+let FiveWorkerMultiplierBought = 0;
+let SixWorkerMultiplierBought = 0;
 
 // Fonction générique pour acheter des workers
 function handleWorkerUpgrade(upgradeKey) {
@@ -325,46 +350,49 @@ function handleWorkerUpgrade(upgradeKey) {
         if (upgrade.WorkerPrice <= money) {
             money -= upgrade.WorkerPrice;
             upgrade.WorkerPrice *= 2;
-            upgrade.WorkerNumber += 1 * upgrade.WorkerMultiplier;
+            upgrade.WorkerNumber += 1 * Number(upgrade.WorkerMultiplier);
             updateUI();
         }
     };
 }
 
 // Fonction générique pour acheter un multiplicateur une seule fois
-function handleMultiplierUpgrade(cost, upgradeKey, boughtFlagVarName) {
-    return (event) => {
-        if (money >= cost && !window[boughtFlagVarName]) {
+function handleMultiplierUpgrade(cost, upgradeKey) {
+    return () => {
+        if (money >= cost && upgrades[upgradeKey].WorkerMultiplier<2 ) {
             money -= cost;
             upgrades[upgradeKey].WorkerMultiplier += 1;
-            window[boughtFlagVarName] = true;
             updateUI();
-            event.target.style.backgroundColor = 'Darkgray';
-            event.target.style.transition = 'linear 0.2s linear';
-            event.target.style.transform = 'scale(0.95)';
+        } else if (upgrades[upgradeKey].WorkerMultiplier>2){
+            alert("You've already bought this upgrade")
         }
     };
 }
 
 // Assignation des écouteurs d'événements
 OneWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('one'));
-OneWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(500, 'one', 'OneWorkerMultiplierBought'));
+OneWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(500, 'one'));
 
 TwoWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('two'));
-TwoWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5000, 'two', 'TwoWorkerMultiplierBought'));
+TwoWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5000, 'two'));
 
 ThreeWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('three'));
-ThreeWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(50000, 'three', 'ThreeWorkerMultiplierBought'));
+ThreeWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(50000, 'three'));
 
 FourWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('four'));
-FourWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e6, 'four', 'FourWorkerMultiplierBought'));
+FourWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e6, 'four'));
 
 FiveWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('five'));
-FiveWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e7, 'five', 'FiveWorkerMultiplierBought'));
+FiveWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e7, 'five'));
 
 SixWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('six'));
-SixWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e10, 'six', 'SixWorkerMultiplierBought'));
+SixWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e10, 'six'));
 
 loadGame();
 
-
+document.addEventListener('keydown',(event)=>{
+    if(event.key == "p"){
+        money += 1e6
+        updateUI()
+    }
+})
