@@ -189,34 +189,6 @@ a{
     }
 }
 
-#OneWorkerUpgradeThree,
-#OneWorkerUpgradeFour,
-#OneWorkerUpgradeFive,
-#OneWorkerUpgradeSix,
-#TwoWorkerUpgradeThree,
-#TwoWorkerUpgradeFour,
-#TwoWorkerUpgradeFive,
-#TwoWorkerUpgradeSix,
-#ThreeWorkerUpgradeThree,
-#ThreeWorkerUpgradeFour,
-#ThreeWorkerUpgradeFive,
-#ThreeWorkerUpgradeSix,
-#FourWorkerUpgradeThree,
-#FourWorkerUpgradeFour,
-#FourWorkerUpgradeFive,
-#FourWorkerUpgradeSix,
-#FiveWorkerUpgradeThree,
-#FiveWorkerUpgradeFour,
-#FiveWorkerUpgradeFive,
-#FiveWorkerUpgradeSix,
-#SixWorkerUpgradeThree,
-#SixWorkerUpgradeFour,
-#SixWorkerUpgradeFive,
-#SixWorkerUpgradeSix{
-    background-color: black;
-}
-
-
 .ResearchHeader{
     display: flex;
     justify-content: space-evenly;

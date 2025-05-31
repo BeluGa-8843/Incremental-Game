@@ -90,12 +90,12 @@ const SixUpgradeNumberDisplay = document.getElementById('SixUpgrade-Number')
 let money = 1
 
 const upgrades = {
-    one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber: 1, WorkerMultiplier: 1 },
-    two: { price: 10, number: 0, btn: TwoUpgradeBtn, WorkerPrice: 1e3, WorkerNumber: 1, WorkerMultiplier: 1 },
-    three: { price: 1000, number: 0, btn: ThreeUpgradeBtn, WorkerPrice: 1e4, WorkerNumber: 1, WorkerMultiplier: 1 },
-    four: { price: 100000, number: 0, btn: FourUpgradeBtn, WorkerPrice: 1e6, WorkerNumber: 1, WorkerMultiplier: 1 },
-    five: { price: 1e7, number: 0, btn: FiveUpgradeBtn, WorkerPrice: 1e7, WorkerNumber: 1, WorkerMultiplier: 1 },
-    six: { price: 1e9, number: 0, btn: SixUpgradeBtn, WorkerPrice: 1e10, WorkerNumber: 1, WorkerMultiplier: 1 },
+    one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1},
+    two: { price: 10, number: 0, btn: TwoUpgradeBtn, WorkerPrice: 1e3, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1 },
+    three: { price: 1000, number: 0, btn: ThreeUpgradeBtn, WorkerPrice: 1e4, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1 },
+    four: { price: 100000, number: 0, btn: FourUpgradeBtn, WorkerPrice: 1e6, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1 },
+    five: { price: 1e7, number: 0, btn: FiveUpgradeBtn, WorkerPrice: 1e7, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1 },
+    six: { price: 1e9, number: 0, btn: SixUpgradeBtn, WorkerPrice: 1e10, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1 },
 };
 
 function formatNombre(n) {
@@ -140,7 +140,7 @@ function formatNombre(n) {
     } else if (n >= 1e6) {
         return (n / 1e6).toFixed(2) + "M";
     } else if (n >= 1e3) {
-        return (n / 1e3).toFixed(1) + "K";
+        return (n / 1e3).toFixed(2) + "K";
     } else {
         return n.toString();
     }
@@ -152,12 +152,12 @@ Reset.addEventListener('click', () => {
 })
 
 MoneyIncreaser = setInterval(() => {
-    upgrades.five.number += upgrades.six.number * upgrades.six.WorkerNumber;
-    upgrades.four.number += upgrades.five.number * upgrades.five.WorkerNumber;
-    upgrades.three.number += upgrades.four.number * upgrades.four.WorkerNumber;
-    upgrades.two.number += upgrades.three.number * upgrades.three.WorkerNumber;
-    upgrades.one.number += upgrades.two.number * upgrades.two.WorkerNumber;
-    money += 1 * upgrades.one.number * upgrades.one.WorkerNumber;
+    upgrades.five.number += upgrades.six.number * upgrades.six.WorkerNumber*upgrades.six.workerEfficiency;
+    upgrades.four.number += upgrades.five.number * upgrades.five.WorkerNumber*upgrades.five.workerEfficiency;
+    upgrades.three.number += upgrades.four.number * upgrades.four.WorkerNumber*upgrades.four.workerEfficiency;
+    upgrades.two.number += upgrades.three.number * upgrades.three.WorkerNumber*upgrades.three.workerEfficiency;
+    upgrades.one.number += upgrades.two.number * upgrades.two.WorkerNumber*upgrades.two.workerEfficiency;
+    money += 1 * upgrades.one.number * upgrades.one.WorkerNumber*upgrades.one.workerEfficiency;
     updateUI();
     saveGame();
 }, 1000);
@@ -179,7 +179,7 @@ function updateUI() {
     SixWorkerNumberDisplay.textContent = "worker: " + upgrades.six.WorkerNumber
 
     MoneyDipslay.textContent = "Money: " + formatNombre(money) + " $"
-    MoneySecDisplay.textContent = "Money/sec: " + formatNombre(upgrades.one.number * upgrades.one.WorkerNumber)
+    MoneySecDisplay.textContent = "Money/sec: " + formatNombre(upgrades.one.number * upgrades.one.WorkerNumber*upgrades.one.workerEfficiency)
 
     OneUpgradeBtn.textContent = formatNombre(upgrades.one.price) + " $"
     TwoUpgradeBtn.textContent = formatNombre(upgrades.two.price) + " $"
@@ -195,12 +195,12 @@ function updateUI() {
     FiveWorkerUpgradeOne.textContent = "+1 worker : " + formatNombre((upgrades.five.WorkerPrice).toFixed(0))
     SixWorkerUpgradeOne.textContent = "+1 worker : " + formatNombre((upgrades.six.WorkerPrice).toFixed(0))
 
-    OneWorkerMultiplierDisplay.textContent = "x" + upgrades.one.WorkerNumber
-    TwoWorkerMultiplierDisplay.textContent = "x" + upgrades.two.WorkerNumber
-    ThreeWorkerMultiplierDisplay.textContent = "x" + upgrades.three.WorkerNumber
-    FourWorkerMultiplierDisplay.textContent = "x" + upgrades.four.WorkerNumber
-    FiveWorkerMultiplierDisplay.textContent = "x" + upgrades.five.WorkerNumber
-    SixWorkerMultiplierDisplay.textContent = "x" + upgrades.six.WorkerNumber
+    OneWorkerMultiplierDisplay.textContent = "x" + upgrades.one.WorkerNumber*upgrades.one.workerEfficiency
+    TwoWorkerMultiplierDisplay.textContent = "x" + upgrades.two.WorkerNumber*upgrades.two.workerEfficiency
+    ThreeWorkerMultiplierDisplay.textContent = "x" + upgrades.three.WorkerNumber*upgrades.three.workerEfficiency
+    FourWorkerMultiplierDisplay.textContent = "x" + upgrades.four.WorkerNumber*upgrades.four.workerEfficiency
+    FiveWorkerMultiplierDisplay.textContent = "x" + upgrades.five.WorkerNumber*upgrades.five.workerEfficiency
+    SixWorkerMultiplierDisplay.textContent = "x" + upgrades.six.WorkerNumber*upgrades.six.workerEfficiency
 
     WorkerDisplay.textContent = "worker: " + formatNombre(-6 + (upgrades.one.WorkerNumber + upgrades.two.WorkerNumber + upgrades.three.WorkerNumber + upgrades.four.WorkerNumber + upgrades.five.WorkerNumber + upgrades.six.WorkerNumber))
 }
@@ -237,7 +237,13 @@ function saveGame() {
         threeWorkerMultiplier: upgrades.three.WorkerMultiplier,
         fourWorkerMultiplier: upgrades.four.WorkerMultiplier,
         fiveWorkerMultiplier: upgrades.five.WorkerMultiplier,
-        sixWorkerMultiplier: upgrades.six.WorkerMultiplier
+        sixWorkerMultiplier: upgrades.six.WorkerMultiplier,
+        OneWorkerEfficiency: upgrades.one. workerEfficiency,
+        TwoWorkerEfficiency: upgrades.two. workerEfficiency,
+        ThreeWorkerEfficiency: upgrades.three. workerEfficiency,
+        FourWorkerEfficiency: upgrades.four. workerEfficiency,
+        FiveWorkerEfficiency: upgrades.five. workerEfficiency,
+        SixWorkerEfficiency: upgrades.six. workerEfficiency,
     }
     localStorage.setItem("myGameSave", JSON.stringify(saveData))
 }
@@ -284,6 +290,13 @@ function loadGame() {
         upgrades.four.WorkerMultiplier = data.fourWorkerMultiplier ?? upgrades.four.WorkerMultiplier
         upgrades.five.WorkerMultiplier = data.fiveWorkerMultiplier ?? upgrades.five.WorkerMultiplier
         upgrades.six.WorkerMultiplier = data.sixWorkerMultiplier ?? upgrades.six.WorkerMultiplier
+
+        upgrades.one.workerEfficiency = data.OneWorkerEfficiency ?? upgrades.one.workerEfficiency
+        upgrades.two.workerEfficiency = data.TwoWorkerEfficiency ?? upgrades.two.workerEfficiency
+        upgrades.three.workerEfficiency = data.ThreeWorkerEfficiency ?? upgrades.three.workerEfficiency
+        upgrades.four.workerEfficiency = data.FourWorkerEfficiency ?? upgrades.four.workerEfficiency
+        upgrades.five.workerEfficiency = data.FiveWorkerEfficiency ?? upgrades.five.workerEfficiency
+        upgrades.six.workerEfficiency = data.SixWorkerEfficiency ?? upgrades.six.workerEfficiency
     }
     updateUI()
 }
@@ -357,11 +370,35 @@ function handleWorkerUpgrade(upgradeKey) {
 }
 
 // Fonction générique pour acheter un multiplicateur une seule fois
-function handleMultiplierUpgrade(cost, upgradeKey) {
+function FirstOneTimeUpgrade(cost, upgradeKey) {
     return () => {
         if (money >= cost && upgrades[upgradeKey].WorkerMultiplier<2 ) {
             money -= cost;
-            upgrades[upgradeKey].WorkerMultiplier += 1;
+            upgrades[upgradeKey].WorkerMultiplier *= 2;
+            updateUI();
+        } else if (upgrades[upgradeKey].WorkerMultiplier>=2){
+            alert("You've already bought this upgrade")
+        }
+    };
+}
+
+function SecondOneTimeUpgrade(cost, upgradeKey){
+    return()=>{
+        if (money >= cost && upgrades[upgradeKey].workerEfficiency<1.5){
+            money -= cost
+            upgrades[upgradeKey].workerEfficiency = 1.5;
+            updateUI()
+        } else if (upgrades[upgradeKey].workerEfficiency >= 1.5){
+            alert("You've already bought this upgrade")
+        }
+    }
+}
+
+function SixthOneTimeUpgrade(cost, upgradeKey) {
+    return () => {
+        if (money >= cost && upgrades[upgradeKey].WorkerMultiplier<4 ) {
+            money -= cost;
+            upgrades[upgradeKey].WorkerMultiplier *= 2;
             updateUI();
         } else if (upgrades[upgradeKey].WorkerMultiplier>=2){
             alert("You've already bought this upgrade")
@@ -371,22 +408,34 @@ function handleMultiplierUpgrade(cost, upgradeKey) {
 
 // Assignation des écouteurs d'événements
 OneWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('one'));
-OneWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(500, 'one'));
+OneWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(500, 'one'));
+OneWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2000,'one'));
+OneWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e5,'one'));
 
 TwoWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('two'));
-TwoWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5000, 'two'));
+TwoWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5000, 'two'));
+TwoWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e4,'two'));
+TwoWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e6,'two'));
 
 ThreeWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('three'));
-ThreeWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(50000, 'three'));
+ThreeWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(50000, 'three'));
+ThreeWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e5,'three'));
+ThreeWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e7,'three'));
 
 FourWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('four'));
-FourWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e6, 'four'));
+FourWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5e6, 'four'));
+FourWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e7,'four'));
+FourWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e9,'four'));
 
 FiveWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('five'));
-FiveWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e7, 'five'));
+FiveWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5e7, 'five'));
+FiveWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e8,'five'));
+FiveWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e10,'five'));
 
 SixWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('six'));
-SixWorkerUpgradeTwo.addEventListener('click', handleMultiplierUpgrade(5e10, 'six'));
+SixWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5e10, 'six'));
+SixWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e11,'six'));
+SixWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e13,'six'));
 
 loadGame();
 
