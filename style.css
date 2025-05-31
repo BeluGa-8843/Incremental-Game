@@ -7,6 +7,26 @@ body{
     margin: 0;
 }
 
+ul{
+    padding: 0;
+    margin: 0;
+}
+
+button{
+    cursor: pointer;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+button:hover{
+    background-color: lightgray;
+}
+
+button:active{
+    transform: scale(0.9);
+}
+
 .MainTable{
     display: flex;
     justify-content: center;
@@ -63,7 +83,10 @@ a{
     justify-content: center;
 }
 #Home{display: flex;}
-#Research{display: none;}
+#Research{
+    justify-content: center;
+    display: none;
+}
 #Worker{display: none;}
 
 .Header{
@@ -118,7 +141,6 @@ a{
  border-radius: 5px;
  margin: 5px;
  height: 7vh;
- cursor: pointer;
  padding: 5px;
 }
 
@@ -192,5 +214,195 @@ a{
 #SixWorkerUpgradeFive,
 #SixWorkerUpgradeSix{
     background-color: black;
+}
+
+
+.ResearchHeader{
+    display: flex;
+    justify-content: space-evenly;
+    width: 68vw;  
+    border: solid 2px black;
+    border-radius:15px ;
+    padding: 10px;
+    gap: 20px;
+    align-items: center;
+}
+.ResearchMain{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2vh;
+}
+.Researcher{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.AdvancedResearcher{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.Researcher button,
+.AdvancedResearcher Button{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+.ResearchContainer{
+    border: solid 2px black;
+    border-radius: 15px;
+}
+
+.ResearchButtonsPlusMinus{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.ResearchButtonsPlusMinus button{
+    width: 60px;
+    margin: 2px;
+    border: solid 2px black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.ResearchContainer{
+    padding: 10px;
+}
+
+.ResearchTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px black;
+    border-radius: 5px;
+    margin:2px ;
+}  
+
+#ResearcherAssigned{
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ResearchList{
+    border: solid 2px black;
+    border-radius: 15px;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+}
+
+.ResearchList ul li button{
+    border: solid 2px black;
+    border-radius: 5px;
+    list-style: none;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+}
+
+.ResearchList ul{
+padding: 0;
+overflow: scroll;
+}
+
+.ResearchPAndServerContainer{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.ResearchPointContainer{
+    border: solid 2px black;
+    border-radius: 10px;
+    padding: 35px;
+    font-size: 20px;
+}
+
+#researcherAssignedForP{
+    margin-bottom: 5px;
+}
+
+#ResearchPointPerSec{
+    margin-top: 5px;
+}
+
+.Server{
+    border: solid 2px black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ServerTitle{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+.Serverflex{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px;
+}
+
+.Serverflex button{
+    border: solid 2px black;
+    border-radius: 5px;
+    width: 10vw;
+}
+
+.InProgressTitle{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.InProgressResearch{
+    border: solid 2px black;
+    border-radius: 15px;
+    padding: 10px;
+    width: 15vw;
+    display: flex;
+    justify-content: center;
+}
+.InProgressResearch ul{
+    list-style: none;
+    height: 35vh;
+    overflow: scroll;
+}
+
+.InProgressResearch ul li button{
+    border: solid 2px black;
+    border-radius: 5px;
+    list-style: none;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 30px;
 }
 

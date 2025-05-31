@@ -280,9 +280,7 @@ function handleGenericUpgrade(upgradeKey, btnVar) {
             upgrade.price *= 10;
             updateUI();
 
-        } else {
-            alert("You don't have enough money : " + money + " Price: " + upgrade.price);
-        }
+        } 
     });
 }
 
