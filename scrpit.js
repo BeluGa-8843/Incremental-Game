@@ -363,7 +363,7 @@ function handleMultiplierUpgrade(cost, upgradeKey) {
             money -= cost;
             upgrades[upgradeKey].WorkerMultiplier += 1;
             updateUI();
-        } else if (upgrades[upgradeKey].WorkerMultiplier>2){
+        } else if (upgrades[upgradeKey].WorkerMultiplier>=2){
             alert("You've already bought this upgrade")
         }
     };
