@@ -87,7 +87,10 @@ const FiveUpgradeNumberDisplay = document.getElementById('FiveUpgrade-Number')
 const SixUpgradeBtn = document.getElementById('SixUpgrade-Btn')
 const SixUpgradeNumberDisplay = document.getElementById('SixUpgrade-Number')
 
+const ResearchPointDisplay = document.getElementById('ResearchDisplay')
+
 let money = 1
+let RS = 1e5
 
 const upgrades = {
     one: { price: 1, number: 0, btn: OneUpgradeBtn, WorkerPrice: 1e2, WorkerNumber: 1, WorkerMultiplier: 1, workerEfficiency: 1},
@@ -203,11 +206,17 @@ function updateUI() {
     SixWorkerMultiplierDisplay.textContent = "x" + upgrades.six.WorkerNumber*upgrades.six.workerEfficiency
 
     WorkerDisplay.textContent = "worker: " + formatNombre(-6 + (upgrades.one.WorkerNumber + upgrades.two.WorkerNumber + upgrades.three.WorkerNumber + upgrades.four.WorkerNumber + upgrades.five.WorkerNumber + upgrades.six.WorkerNumber))
+    ResearcherNmbr.textContent = "researcher: " + formatNombre(availableResearcher)
+    ResearcherPrice.textContent = formatNombre((research.Researcher.price).toFixed(2)) + " $"
+    ResearcherAssignedDisplay.textContent = ResearcherAssigned + ": researcher assigned"
+    researcherAssignedForP.textContent = RSAssigned +": researcher assigned"
+    ResearchPointDisplay.textContent = "Research: " + RS
 }
 
 function saveGame() {
     const saveData = {
         money,
+        RS,
         onePrice: upgrades.one.price,
         twoPrice: upgrades.two.price,
         threePrice: upgrades.three.price,
@@ -244,6 +253,11 @@ function saveGame() {
         FourWorkerEfficiency: upgrades.four. workerEfficiency,
         FiveWorkerEfficiency: upgrades.five. workerEfficiency,
         SixWorkerEfficiency: upgrades.six. workerEfficiency,
+        ResearcherNmbr: research.Researcher.number,
+        ResearcherPrice: research.Researcher.price,
+        availableResearcher,
+        ResearcherAssigned,
+        RSAssigned
     }
     localStorage.setItem("myGameSave", JSON.stringify(saveData))
 }
@@ -254,7 +268,7 @@ function loadGame() {
     if (save) {
         const data = JSON.parse(save)
         money = data.money ?? 1
-
+        RS = data.RS ?? 0
         upgrades.one.price = data.onePrice ?? upgrades.one.price
         upgrades.two.price = data.twoPrice ?? upgrades.two.price
         upgrades.three.price = data.threePrice ?? upgrades.three.price
@@ -297,10 +311,16 @@ function loadGame() {
         upgrades.four.workerEfficiency = data.FourWorkerEfficiency ?? upgrades.four.workerEfficiency
         upgrades.five.workerEfficiency = data.FiveWorkerEfficiency ?? upgrades.five.workerEfficiency
         upgrades.six.workerEfficiency = data.SixWorkerEfficiency ?? upgrades.six.workerEfficiency
+
+        research.Researcher.number = data.ResearcherNmbr ?? research.Researcher.number
+        research.Researcher.price = data.ResearcherPrice ?? research.Researcher.price
+
+        availableResearcher = data.availableResearcher ?? 0
+        ResearcherAssigned = data.ResearcherAssigned ?? 0
+        RSAssigned = data.RSAssigned ?? 0
     }
     updateUI()
 }
-
 
 function handleGenericUpgrade(upgradeKey, btnVar) {
     btnVar.addEventListener('click', () => {
@@ -347,8 +367,6 @@ WorkerRedirect.addEventListener('click', () => {
 })
 
 // Worker ///////////////////////////////////////////////////////////////
-
-// Flags globaux pour les multiplicateurs achetés
 let OneWorkerMultiplierBought = 0;
 let TwoWorkerMultiplierBought = 0;
 let ThreeWorkerMultiplierBought = 0;
@@ -356,7 +374,6 @@ let FourWorkerMultiplierBought = 0;
 let FiveWorkerMultiplierBought = 0;
 let SixWorkerMultiplierBought = 0;
 
-// Fonction générique pour acheter des workers
 function handleWorkerUpgrade(upgradeKey) {
     return () => {
         const upgrade = upgrades[upgradeKey];
@@ -369,7 +386,6 @@ function handleWorkerUpgrade(upgradeKey) {
     };
 }
 
-// Fonction générique pour acheter un multiplicateur une seule fois
 function FirstOneTimeUpgrade(cost, upgradeKey) {
     return () => {
         if (money >= cost && upgrades[upgradeKey].WorkerMultiplier<2 ) {
@@ -381,7 +397,6 @@ function FirstOneTimeUpgrade(cost, upgradeKey) {
         }
     };
 }
-
 function SecondOneTimeUpgrade(cost, upgradeKey){
     return()=>{
         if (money >= cost && upgrades[upgradeKey].workerEfficiency<1.5){
@@ -393,7 +408,6 @@ function SecondOneTimeUpgrade(cost, upgradeKey){
         }
     }
 }
-
 function SixthOneTimeUpgrade(cost, upgradeKey) {
     return () => {
         if (money >= cost && upgrades[upgradeKey].WorkerMultiplier<4 ) {
@@ -406,38 +420,161 @@ function SixthOneTimeUpgrade(cost, upgradeKey) {
     };
 }
 
-// Assignation des écouteurs d'événements
 OneWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('one'));
 OneWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(500, 'one'));
 OneWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2000,'one'));
 OneWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e5,'one'));
-
 TwoWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('two'));
 TwoWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5000, 'two'));
 TwoWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e4,'two'));
 TwoWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e6,'two'));
-
 ThreeWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('three'));
 ThreeWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(50000, 'three'));
 ThreeWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e5,'three'));
 ThreeWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e7,'three'));
-
 FourWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('four'));
 FourWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5e6, 'four'));
 FourWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e7,'four'));
 FourWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e9,'four'));
-
 FiveWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('five'));
 FiveWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5e7, 'five'));
 FiveWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e8,'five'));
 FiveWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e10,'five'));
-
 SixWorkerUpgradeOne.addEventListener('click', handleWorkerUpgrade('six'));
 SixWorkerUpgradeTwo.addEventListener('click', FirstOneTimeUpgrade(5e10, 'six'));
 SixWorkerUpgradeThree.addEventListener('click',SecondOneTimeUpgrade(2e11,'six'));
 SixWorkerUpgradeSix.addEventListener('click',SixthOneTimeUpgrade(5e13,'six'));
 
-loadGame();
+const ResearcherNmbrDisplay = document.getElementById('ResearcherNmbr')
+const ResearcherPriceDisplay = document.getElementById('ResearcherPrice')
+const AdvancedResearcherNmbrDisplay = document.getElementById('AdvancedResearcherNmbr')
+const AdvancedResearcherPriceDisplay = document.getElementById('AdvancedResearcherPrice')
+const PlusResearcherForResearch = document.getElementById('PlusResearcherForResearch')
+const MinusResearcherForResearch = document.getElementById('MinusResearcherForResearch')
+const PlusResearcherForPoint = document.getElementById('PlusResearcherForPoint')
+const MinusResearcherForPoint = document.getElementById('MinusResearcherForPoint')
+const ResearcherAssignedDisplay = document.getElementById('ResearcherAssigned')
+const AdvancedResearcherDisplay = document.getElementById('AdvancedResearcher') 
+const researcherAssignedForP = document.getElementById('researcherAssignedForP')
+const InProgressList = document.getElementById('InProgressList')
+
+const OneRs = document.getElementById("OneRs");
+const TwoRs = document.getElementById("TwoRs");
+const ThreeRs = document.getElementById("ThreeRs");
+const FourRs = document.getElementById("FourRs");
+const FiveRs = document.getElementById("FiveRs");
+const SixRs = document.getElementById("SixRs");
+const SevenRs = document.getElementById("SevenRs");
+const EightRs = document.getElementById("EightRs");
+const NineRs = document.getElementById("NineRs");
+const TenRs = document.getElementById("TenRs");
+const ElevenRs = document.getElementById("ElevenRs");
+const TwelveRs = document.getElementById("TwelveRs");
+const ThirteenRs = document.getElementById("ThirteenRs");
+const FourteenRs = document.getElementById("FourteenRs");
+const FifteenRs = document.getElementById("FifteenRs");
+const SixteenRs = document.getElementById("SixteenRs");
+
+
+const research={
+    Researcher: {price:100,number:0},
+    AdvancedResearcher: {price:1e5,number:0}
+}
+
+let availableResearcher = 0
+let ResearcherAssigned = 0
+let RSAssigned = 0
+
+const UpResearch={
+    one: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    two: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    three: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    four: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    five: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    six: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    seven: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    eight: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    nine: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    ten: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    eleven: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    twelve: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    thirteen: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    fourteen: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    fifteen: {RsPrice: 0, time:0, isAlreadyBought: 0},
+    sixteen: {RsPrice: 0, time:0, isAlreadyBought: 0}
+}
+
+function ResearchBtns(RsCost,TimeCost,li,up){
+    if(RsCost <= RS && UpResearch[up].isAlreadyBought == 0){
+        RS -= RsCost
+        InProgressList.appendChild(li)
+        UpResearch[up].isAlreadyBought += 1
+        updateUI()
+        if (up == "one"){
+            
+        }
+    } else{
+        alert('already bought')
+    }
+}
+OneRs.addEventListener('click', () => { ResearchBtns(10, 10, OneRs, "one"); });
+TwoRs.addEventListener('click', () => { ResearchBtns(10, 10, TwoRs, "two"); });
+ThreeRs.addEventListener('click', () => { ResearchBtns(10, 10, ThreeRs, "three"); });
+FourRs.addEventListener('click', () => { ResearchBtns(10, 10, FourRs, "four"); });
+FiveRs.addEventListener('click', () => { ResearchBtns(10, 10, FiveRs, "five"); });
+SixRs.addEventListener('click', () => { ResearchBtns(10, 10, SixRs, "six"); });
+SevenRs.addEventListener('click', () => { ResearchBtns(10, 10, SevenRs, "seven"); });
+EightRs.addEventListener('click', () => { ResearchBtns(10, 10, EightRs, "eight"); });
+NineRs.addEventListener('click', () => { ResearchBtns(10, 10, NineRs, "nine"); });
+TenRs.addEventListener('click', () => { ResearchBtns(10, 10, TenRs, "ten"); });
+ElevenRs.addEventListener('click', () => { ResearchBtns(10, 10, ElevenRs, "eleven"); });
+TwelveRs.addEventListener('click', () => { ResearchBtns(10, 10, TwelveRs, "twelve"); });
+ThirteenRs.addEventListener('click', () => { ResearchBtns(10, 10, ThirteenRs, "thirteen"); });
+FourteenRs.addEventListener('click', () => { ResearchBtns(10, 10, FourteenRs, "fourteen"); });
+FifteenRs.addEventListener('click', () => { ResearchBtns(10, 10, FifteenRs, "fifteen"); });
+SixteenRs.addEventListener('click', () => { ResearchBtns(10, 10, SixteenRs, "sixteen"); });
+
+ResearcherPriceDisplay.addEventListener('click',()=>{
+    let r = research.Researcher
+    if(r.price <= money){
+        money -= r.price
+        r.number += 1
+        r.price *= r.number *1.15
+        availableResearcher += 1
+        updateUI()
+    }
+})
+
+PlusResearcherForPoint.addEventListener('click',()=>{
+    if (availableResearcher > 0){
+        availableResearcher -= 1
+        RSAssigned += 1
+        updateUI()
+    }
+})
+MinusResearcherForPoint.addEventListener('click',()=>{
+    if (RSAssigned > 0){
+        availableResearcher += 1
+        RSAssigned -= 1
+        updateUI()
+    }
+})
+PlusResearcherForResearch.addEventListener('click',()=>{
+    if (availableResearcher > 0){
+        availableResearcher-= 1
+        ResearcherAssigned += 1
+        updateUI()
+    }
+})
+MinusResearcherForResearch.addEventListener('click',()=>{
+    if (ResearcherAssigned > 0){
+        availableResearcher+= 1
+        ResearcherAssigned -= 1
+        updateUI()
+    }
+})
+
+
 
 document.addEventListener('keydown',(event)=>{
     if(event.key == "p"){
@@ -445,3 +582,7 @@ document.addEventListener('keydown',(event)=>{
         updateUI()
     }
 })
+
+
+loadGame();
+

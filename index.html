@@ -116,12 +116,12 @@
         <div class="ResearchContent">
             <div class="ResearchHeader">
                 <div class="Researcher">
-                    <div>researcher: 0</div>
-                    <button>1K $</button>
+                    <div id="ResearcherNmbr">researcher: 0</div>
+                    <button id="ResearcherPrice">100 $</button>
                 </div>
-                <div class="AdvancedResearcher">
-                    <div>advanced researcher: 0</div>
-                    <button>100K $</button>
+                <div id="AdvancedResearcher">
+                    <div id="AdvancedResearcherNmbr">advanced researcher: 0</div>
+                    <button id="AdvancedResearcherPrice">100K $</button>
                 </div>
             </div>
             <div class="ResearchMain">
@@ -136,16 +136,23 @@
                             <div id="ResearcherAssigned">0: researcher assigned</div>
                             <div class="ResearchList">
                                 <ul>
-                                    <li><button>First Research</button></li>
-                                    <li><button>2</button></li>
-                                    <li><button>3</button></li>
-                                    <li><button>4</button></li>
-                                    <li><button>5</button></li>
-                                    <li><button>6</button></li>
-                                    <li><button>7</button></li>
-                                    <li><button>8</button></li>
-                                    <li><button>9</button></li>
-                                    <li><button>10</button></li>
+                                    <li id="OneRs"><button class="research">x2 RS / sec : 0 RS</button></li>
+                                    <li id="TwoRs"><button class="research">unlock 2nd Upgrade : 0 RS</button></li>
+                                    <li id="ThreeRs"><button class="research">unlock Workers : 0 RS</button></li>
+                                    <li id="FourRs"><button class="research">unlock 3rd Upgrade : 0 RS</button></li>
+                                    <li id="FiveRs"><button class="research">unlock Worker Upgrade : 0 RS</button></li>
+                                    <li id="SixRs"><button class="research">speed $ generation x2 : 0 RS</button></li>
+                                    <li id="SevenRs"><button class="research">unlock 4th Upgrade : 0 RS</button></li>
+                                    <li id="EightRs"><button class="research">unlock worker Upgrade : 0 RS</button></li>
+                                    <li id="NineRs"><button class="research">unlock new researcher : 0 RS</button></li>
+                                    <li id="TenRs"><button class="research">speed $ generation x2 : 0 RS</button></li>
+                                    <li id="ElevenRs"><button class="research">unlock 5th upgrade : 0 RS</button></li>
+                                    <li id="TwelveRs"><button class="research">unlock worker upgrade : 0 RS</button></li>
+                                    <li id="ThirteenRs"><button class="research">unlock servers : 0 RS</button></li>
+                                    <li id="FourteenRs"><button class="research">unlock 6th upgrade : 0 RS</button></li>
+                                    <li id="FifteenRs"><button class="research">unlock worker upgrade : 0 RS</button></li>
+                                    <li id="SixteenRs"><button class="research">speed $ generation x2 : 0 RS</button></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -158,8 +165,8 @@
                             <button id="MinusResearcherForPoint">-</button>
                         </div>
                         <div class="ResearchPointContainer">
-                            <div id="researcherAssignedForP">0: Researcher assigned</div>
-                            <div id="ResearchPointPerSec">0: Research Points / sec</div>
+                            <div id="researcherAssignedForP">0: researcher assigned</div>
+                            <div id="ResearchPointPerSec">0: research Points / sec</div>
                         </div>
                     </div>
                     <div class="Server">
@@ -183,7 +190,7 @@
                 <div class="InProgressResearch">
                     <div>
                         <div class="InProgressTitle">In Progress</div>
-                        <ul>
+                        <ul id="InProgressList">
                             <!--Here in progress research-->
                         </ul>
                     </div>

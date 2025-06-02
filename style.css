@@ -210,7 +210,7 @@ a{
     gap: 10px;
     align-items: center;
 }
-.AdvancedResearcher{
+#AdvancedResearcher{
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -272,21 +272,8 @@ a{
     justify-content: center;
 }
 
-.ResearchList ul li button{
-    border: solid 2px black;
-    border-radius: 5px;
-    list-style: none;
-    margin: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 30px;
-}
-
 .ResearchList ul{
-padding: 0;
-overflow: scroll;
+overflow: auto;
 }
 
 .ResearchPAndServerContainer{
@@ -363,10 +350,10 @@ overflow: scroll;
 .InProgressResearch ul{
     list-style: none;
     height: 35vh;
-    overflow: scroll;
+    overflow: auto;
 }
 
-.InProgressResearch ul li button{
+ul li button{
     border: solid 2px black;
     border-radius: 5px;
     list-style: none;
@@ -374,7 +361,10 @@ overflow: scroll;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 30px;
+    width: 215px;
+    height: 50px;
 }
 
+ul:empty{
+    overflow: hidden;
+}
