@@ -87,7 +87,24 @@ a{
     justify-content: center;
     display: none;
 }
-#Worker{display: none;}
+#Worker{display: none;} 
+
+#WorkerRedirect{
+    display: none;
+}
+
+#TwoUpgradePrice,
+#ThreeUpgradePrice,
+#FourUpgradePrice,
+#FiveUpgradePrice,
+#SixUpgradePrice,
+#TwoUpgrade,
+#ThreeUpgrade,
+#FourUpgrade,
+#FiveUpgrade,
+#SixUpgrade{
+    display: none;
+}
 
 .Header{
     display: flex;
@@ -122,6 +139,14 @@ a{
 }
 
 .UpgradeWorker{
+    flex: 0 0 auto;
+    border: solid 2px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.NotAlreadyBoughtWorker{
+    display: none;
     flex: 0 0 auto;
     border: solid 2px;
     border-radius: 5px;
@@ -211,7 +236,7 @@ a{
     align-items: center;
 }
 #AdvancedResearcher{
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 10px;
     align-items: center;
@@ -297,10 +322,10 @@ overflow: auto;
     margin-top: 5px;
 }
 
-.Server{
+#Server{
     border: solid 2px black;
     border-radius: 15px;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }

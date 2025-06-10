@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incremental Game</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=1.9.5">
     <link rel="icon" href="pictures/logo.png" type="image/png">
 
 </head>
@@ -84,28 +84,28 @@
             </div>
             <div class="UpgradeSection-container">
                 <div>
-                    <div class="UpgradeSection">
+                    <div class="UpgradeSection" id="OneUpgradePrice">
                         <div class="UpgradeNumber" id="OneUpgrade-Number">0:</div>
                         <button id="OneUpgrade-Btn">1 $</button>
                     </div>
-                    <div class="UpgradeSection">
+                    <div class="UpgradeSection" id="TwoUpgradePrice">
                         <div class="UpgradeNumber" id="TwoUpgrade-Number">0:</div>
                         <button id="TwoUpgrade-Btn">10 $</button>
                     </div>
-                    <div class="UpgradeSection">
+                    <div class="UpgradeSection" id="ThreeUpgradePrice">
                         <div class="UpgradeNumber" id="ThreeUpgrade-Number">0:</div>
                         <button id="ThreeUpgrade-Btn">1K $</button>
                     </div>
                 </div>
-                <div class="UpgradeSection">
+                <div class="UpgradeSection" id="FourUpgradePrice">
                     <div class="UpgradeNumber" id="FourUpgrade-Number">0:</div>
                     <button id="FourUpgrade-Btn">100K $</button>
                 </div>
-                <div class="UpgradeSection">
+                <div class="UpgradeSection" id="FiveUpgradePrice">
                     <div class="UpgradeNumber" id="FiveUpgrade-Number">0:</div>
                     <button id="FiveUpgrade-Btn">10M $</button>
                 </div>
-                <div class="UpgradeSection">
+                <div class="UpgradeSection" id="SixUpgradePrice">
                     <div class="UpgradeNumber" id="SixUpgrade-Number">0:</div>
                     <button id="SixUpgrade-Btn">1B $</button>
                 </div>
@@ -136,22 +136,22 @@
                             <div id="ResearcherAssigned">0: researcher assigned</div>
                             <div class="ResearchList">
                                 <ul>
-                                    <li id="OneRs"><button class="research">x2 RS / sec : 0 RS</button></li>
-                                    <li id="TwoRs"><button class="research">unlock 2nd Upgrade : 0 RS</button></li>
-                                    <li id="ThreeRs"><button class="research">unlock Workers : 0 RS</button></li>
-                                    <li id="FourRs"><button class="research">unlock 3rd Upgrade : 0 RS</button></li>
-                                    <li id="FiveRs"><button class="research">unlock Worker Upgrade : 0 RS</button></li>
-                                    <li id="SixRs"><button class="research">speed $ generation x2 : 0 RS</button></li>
-                                    <li id="SevenRs"><button class="research">unlock 4th Upgrade : 0 RS</button></li>
-                                    <li id="EightRs"><button class="research">unlock worker Upgrade : 0 RS</button></li>
-                                    <li id="NineRs"><button class="research">unlock new researcher : 0 RS</button></li>
-                                    <li id="TenRs"><button class="research">speed $ generation x2 : 0 RS</button></li>
-                                    <li id="ElevenRs"><button class="research">unlock 5th upgrade : 0 RS</button></li>
-                                    <li id="TwelveRs"><button class="research">unlock worker upgrade : 0 RS</button></li>
-                                    <li id="ThirteenRs"><button class="research">unlock servers : 0 RS</button></li>
-                                    <li id="FourteenRs"><button class="research">unlock 6th upgrade : 0 RS</button></li>
-                                    <li id="FifteenRs"><button class="research">unlock worker upgrade : 0 RS</button></li>
-                                    <li id="SixteenRs"><button class="research">speed $ generation x2 : 0 RS</button></li>
+                                    <li id="OneRs"><button class="research">x2 RS / sec : 100 RS</button></li>
+                                    <li id="TwoRs"><button class="research">unlock 2nd Upgrade : 100 RS</button></li>
+                                    <li id="ThreeRs"><button class="research">unlock Workers : 100 RS</button></li>
+                                    <li id="FourRs"><button class="research">unlock 3rd Upgrade : 100 RS</button></li>
+                                    <li id="FiveRs"><button class="research">unlock Worker Upgrade : 100 RS</button></li>
+                                    <li id="SixRs"><button class="research">speed $ generation x2 : 100 RS</button></li>
+                                    <li id="SevenRs"><button class="research">unlock 4th Upgrade : 100 RS</button></li>
+                                    <li id="EightRs"><button class="research">unlock worker Upgrade : 100 RS</button></li>
+                                    <li id="NineRs"><button class="research">In Progress <!--Advanced Researcher--></button></li>
+                                    <li id="TenRs"><button class="research">speed $ generation x2 : 100 RS</button></li>
+                                    <li id="ElevenRs"><button class="research">unlock 5th upgrade : 100 RS</button></li>
+                                    <li id="TwelveRs"><button class="research">unlock worker upgrade : 100 RS</button></li>
+                                    <li id="ThirteenRs"><button class="research">In Progress <!--Server--></button></li>
+                                    <li id="FourteenRs"><button class="research">unlock 6th upgrade : 100 RS</button></li>
+                                    <li id="FifteenRs"><button class="research">unlock worker upgrade : 100 RS</button></li>
+                                    <li id="SixteenRs"><button class="research">speed $ generation x2 : 100 RS</button></li>
 
                                 </ul>
                             </div>
@@ -169,7 +169,7 @@
                             <div id="ResearchPointPerSec">0: research Points / sec</div>
                         </div>
                     </div>
-                    <div class="Server">
+                    <div id="Server">
                         <div>
                             <div class="ServerTitle">Servers</div>
                             <div class="ServerList">
@@ -202,7 +202,7 @@
     <div id="Worker">
         <div>
             <div class="UpgradeSection-worker">
-                <div class="UpgradeWorker">
+                <div class="UpgradeWorker" class="NotAlreadyBoughtWorker" id="OneWorkerContainer">
                     <div class="UpgradeTitle-worker">First Upgrade Worker</div>
                     <div id="OneWorkerNumber" class="WorkerNumber">Worker: 0</div>
                     <div class="UpgradeWorker-Btn">
@@ -214,7 +214,7 @@
                         <button id="OneWorkerUpgradeSix">x2 worker/purchase : 500K $</button>
                     </div>
                 </div>
-                <div class="UpgradeWorker">
+                <div class="NotAlreadyBoughtWorker" id="TwoWorkerContainer">
                     <div class="UpgradeTitle-worker">Second Upgrade Worker</div>
                     <div id="TwoWorkerNumber" class="WorkerNumber">Worker: 0</div>
                     <div class="UpgradeWorker-Btn">
@@ -226,7 +226,7 @@
                         <button id="TwoWorkerUpgradeSix">x2 worker/purchase : 5M $</button>
                     </div>
                 </div>
-                <div class="UpgradeWorker">
+                <div  class="NotAlreadyBoughtWorker" id="ThreeWorkerContainer">
                     <div class="UpgradeTitle-worker">Third Upgrade Worker</div>
                     <div id="ThreeWorkerNumber" class="WorkerNumber">Worker: 0</div>
                     <div class="UpgradeWorker-Btn">
@@ -238,7 +238,7 @@
                         <button id="ThreeWorkerUpgradeSix">x2 worker/purchase : 50M $</button>
                     </div>
                 </div>
-                <div class="UpgradeWorker">
+                <div  class="NotAlreadyBoughtWorker" id="FourWorkerContainer">
                     <div class="UpgradeTitle-worker">Fourth Upgrade Worker</div>
                     <div id="FourWorkerNumber" class="WorkerNumber">Worker: 0</div>
                     <div class="UpgradeWorker-Btn">
@@ -250,7 +250,7 @@
                         <button id="FourWorkerUpgradeSix">x2 worker/purchase : 5B $</button>
                     </div>
                 </div>
-                <div class="UpgradeWorker">
+                <div  class="NotAlreadyBoughtWorker" id="FiveWorkerContainer">
                     <div class="UpgradeTitle-worker">Fifth Upgrade Worker</div>
                     <div id="FiveWorkerNumber" class="WorkerNumber">Worker: 0</div>
                     <div class="UpgradeWorker-Btn">
@@ -262,7 +262,7 @@
                         <button id="FiveWorkerUpgradeSix">x2 worker/purchase : 50B $</button>
                     </div>
                 </div>
-                <div class="UpgradeWorker">
+                <div  class="NotAlreadyBoughtWorker" id="SixWorkerContainer">
                     <div class="UpgradeTitle-worker">Sixth Upgrade Worker</div>
                     <div id="SixWorkerNumber" class="WorkerNumber">Worker: 0</div>
                     <div class="UpgradeWorker-Btn">
