@@ -152,7 +152,7 @@ function formatNombre(n) {
     } else if (n >= 1e3) {
         return (n / 1e3).toFixed(2) + "K";
     } else {
-        return n.toString();
+        return n.toFixed(2);
     }
 }
 
